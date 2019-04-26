@@ -2,6 +2,8 @@
 
 This project was created for my Graduate studies of Development of applications for web and mobile devices.
 
+Application created using [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -29,16 +31,15 @@ $ composer install
 $ composer update
 ```
 
-and start the project
+and start the project: (you can use another port, like 8080)
 
 ```sh
 $ php -S localhost:8000 -t public/
 ```
 
-or
-
-```sh
-$ docker-compose up -d
+Access the site in your browser at:
+```
+http://localhost:8000
 ```
 
 ## Create modules
