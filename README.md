@@ -11,9 +11,6 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 * PHP 7
-* Node 8.10.0
-* NPM 6.2.0
-* Postgree 9.6
 
 ### Installing
 
