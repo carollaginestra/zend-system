@@ -43,7 +43,7 @@ class IndexController extends AbstractActionController
         ];
 
         if (empty($solicitante->cpf) || empty($assunto->assunto) || empty($assunto->detalhes)) {
-            $_SESSION['mensagem'] = 'Preencha os campos!';
+            $_SESSION['mensagem'] = '<strong class="text-danger">Preencha os campos!</strong>';
             return $this->redirect()->toRoute('application');
         }
 
