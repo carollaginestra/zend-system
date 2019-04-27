@@ -31,7 +31,9 @@ $ composer install
 $ composer update
 ```
 
-and start the project: (you can use another port, like 8080)
+### Start project
+
+start the project: (you can use another port, like 8080)
 
 ```sh
 $ php -S localhost:8000 -t public/
@@ -41,6 +43,10 @@ Access the site in your browser at:
 ```
 http://localhost:8000
 ```
+
+### Setting database
+
+Go to ```config/autoload/global.php ``` and fill in according to your database.
 
 ## Create modules
 
@@ -52,4 +58,5 @@ $ composer dump-autoload
 
 ## Built With
 
-* [Zend](https://framework.zend.com/) - The web Framework PHP used
+* [Bootstrap v3.3.7](https://getbootstrap.com/docs/3.3/) - The web Framework front-end used
+* [Zend 3](https://framework.zend.com/) - The web Framework PHP used
