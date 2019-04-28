@@ -11,12 +11,6 @@ class Assunto
 
     /**
      *
-     * @var integer
-     */
-    public $codigo;
-
-    /**
-     *
      * @var string
      */
     public $assunto;
@@ -33,7 +27,6 @@ class Assunto
      */
     public function __construct(array $data)
     {
-        $this->codigo = $data['codigo'] ?? null;
         $this->assunto = $data['assunto'] ?? null;
         $this->detalhes = $data['detalhes'] ?? null;
     }

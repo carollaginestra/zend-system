@@ -66,11 +66,5 @@ return [
             'DemandaTable' => DemandaTableFactory::class
         ]
     ]     
-    
-    
-    
-    
-    
-    
-    
+
 ];

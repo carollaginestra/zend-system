@@ -4,7 +4,6 @@ namespace Application\Model;
 use Zend\Db\TableGateway\TableGatewayInterface;
 use Zend\Db\Sql\Expression;
 use Zend\Db\Sql\Select;
-use Zend\Db\ResultSet\ResultSet;
 
 /**
  *
@@ -41,20 +40,10 @@ class AssuntoTable
         ]);
         if ($result->count() == 0) {
             $this->tableGateway->insert($set);
-            $assunto->codigo = $this->getMaxCodigo();
+            return true;
+        } else {
+            return false;
         }
-    }
-
-    /**
-     *
-     * @param string $assunto
-     * @return ResultSet
-     */
-    public function getByAssunto($assunto)
-    {
-        return $this->tableGateway->select([
-            'assunto' => $assunto
-        ]);
     }
 
     /**
