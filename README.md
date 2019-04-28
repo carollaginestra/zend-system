@@ -45,6 +45,14 @@ http://localhost:8000
 
 Go to ```config/autoload/global.php ``` and fill in according to your database.
 
+Now open ```config/autoload/development.local.php``` file inside "return" array, replace:
+```
+'db' => [
+    'username' => 'root', #let this match your MySQL username
+    'password' => '', #let this match your MySQL database password
+]
+```
+
 ## Create modules
 
 always after you have created all the files in a new module, run the command
