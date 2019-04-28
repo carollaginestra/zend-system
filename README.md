@@ -43,9 +43,12 @@ http://localhost:8000
 
 ### Setting database
 
-Go to ```config/autoload/global.php ``` and fill in according to your database.
+Create the file local.php to setting database
+```sh
+$ cp config/autoload/local.php.dist config/autoload/local.php
+```
+Open the file ```config/autoload/local.php ``` and inside "return" array, insert:
 
-Now open ```config/autoload/development.local.php``` file inside "return" array, replace:
 ```
 'db' => [
     'username' => 'root', #let this match your MySQL username
