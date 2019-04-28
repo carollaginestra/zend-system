@@ -2,9 +2,6 @@
 namespace Application\Model;
 
 use Zend\Db\TableGateway\TableGatewayInterface;
-use Zend\Db\Sql\Expression;
-use Zend\Db\Sql\Select;
-use Zend\Db\ResultSet\ResultSet;
 
 /**
  *
@@ -39,32 +36,5 @@ class DemandaTable
         try {
             $this->tableGateway->insert($set);
         } catch (\Exception $e) {}
-    }
-
-    /**
-     *
-     * @param string $assunto
-     * @return ResultSet
-     */
-    public function getByAssunto($assunto)
-    {
-        return $this->tableGateway->select([
-            'assunto' => $assunto
-        ]);
-    }
-
-    /**
-     *
-     * @return integer
-     */
-    public function getMaxCodigo()
-    {
-        $expression = new Expression('max(codigo)');
-
-        $select = new Select('assunto');
-        $select->columns([
-            'codigoAssunto' => $expression
-        ]);
-        return $this->tableGateway->selectWith($select)->current()['codigoAssunto'];
     }
 }
