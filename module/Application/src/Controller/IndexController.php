@@ -2,8 +2,11 @@
 namespace Application\Controller;
 
 use Application\Model\Assunto;
+use Application\Model\AssuntoTable;
 use Application\Model\Demanda;
+use Application\Model\DemandaTable;
 use Application\Model\Solicitante;
+use Application\Model\SolicitanteTable;
 use Interop\Container\ContainerInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -43,32 +46,37 @@ class IndexController extends AbstractActionController
         ];
 
         if (empty($solicitante->cpf) || empty($assunto->assunto) || empty($assunto->detalhes)) {
-            $_SESSION['mensagem'] = '<strong class="text-danger">Preencha os campos!</strong>';
+            $_SESSION['dados']['mensagem'] = 'Preencha os campos! *';
             return $this->redirect()->toRoute('application');
         }
 
         $solicitanteTable = $this->container->get('SolicitanteTable');
 
-        $solicitanteTable->persist($solicitante);
+
+        if (!$solicitanteTable->persist($solicitante)) {
+            $_SESSION['dados']['mensagem'] = "O CPF já existe";
+            return $this->redirect()->toRoute('application');
+        }
 
         $assuntoTable = $this->container->get('AssuntoTable');
 
-        $result = $assuntoTable->getByAssunto($assunto->assunto);
-
-        if ($result->count() > 0) {
-            $_SESSION['dados']['detalhes_gravados'] = $result->current()['detalhes'];
+        if (!$assuntoTable->persist($assunto)) {
+            $_SESSION['dados']['mensagem'] = "O Assunto já existe";
             return $this->redirect()->toRoute('application');
-        } else {
-            $assuntoTable->persist($assunto);
         }
 
-        $demanda = new Demanda($solicitante, $assunto);
+        $codigoAssunto = $assuntoTable->getMaxCodigo();
+
+        $data = array ('codigo_solicitante' => $solicitante->cpf, 'codigo_assunto' => $codigoAssunto);
+
+        $demanda = new Demanda($data);
 
         $demandaTable = $this->container->get('DemandaTable');
         $demandaTable->persist($demanda);
 
         $_SESSION['dados'] = [];
+        $_SESSION['dados']['mensagem'] = "Cadastro Realizado";
 
-        return new ViewModel();
+        return $this->redirect()->toRoute('application');
     }
 }

@@ -19,24 +19,23 @@ class Demanda
      *
      * @var Assunto
      */
-    public $assunto;
+    public $codigo_assunto;
 
     /**
      *
      * @var Solicitante
      */
-    public $solicitante;
+    public $codigo_solicitante;
 
     /**
      *
      * @param Solicitante $solicitante
      * @param Assunto $assunto
      */
-    public function __construct(Solicitante $solicitante, Assunto $assunto)
-    {
-        $this->solicitante = $solicitante;
-        $this->assunto = $assunto;
-    }
+    public function __construct(array $data){
+        $this->codigo_solicitante = $data['codigo_solicitante'] ?? null;
+        $this->codigo_assunto = $data['codigo_assunto'] ?? null;
+    }   
 
     /**
      *
@@ -44,9 +43,6 @@ class Demanda
      */
     public function toArray()
     {
-        return [
-            'codigo_solicitante' => $this->solicitante->cpf,
-            'codigo_assunto' => $this->assunto->codigo
-        ];
+        return get_object_vars($this);
     }
 }

@@ -30,6 +30,9 @@ class SolicitanteTable
         ]);
         if ($result->count() == 0) {
             $this->tableGateway->insert($set);
+            return true;
+        } else {
+            return false;
         }
     }
 }
